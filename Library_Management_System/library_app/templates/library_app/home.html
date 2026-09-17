@@ -1,0 +1,32 @@
+{% extends "library_app/base.html" %}
+{% block title %}Home | LibraryHub{% endblock %}
+{% block content %}
+<section class="hero">
+  <div>
+    <p class="eyebrow">DJANGO CRUD APPLICATION</p>
+    <h1>Manage your library<br><span>smarter & simpler.</span></h1>
+    <p class="lead">A complete library management system with Create, Read, Update and Delete operations.</p>
+    <a class="btn" href="{% url 'book_list' %}">View Books</a>
+    <a class="btn outline" href="{% url 'add_book' %}">Add a Book</a>
+  </div>
+  <div class="hero-icon">📚</div>
+</section>
+<div class="stats">
+  <div><strong>{{ total_books }}</strong><span>Total Books</span></div>
+  <div><strong>CRUD</strong><span>Operations</span></div>
+  <div><strong>API</strong><span>REST Ready</span></div>
+</div>
+<h2>Recently Added</h2>
+<div class="grid">
+{% for book in books %}
+  <article class="card">
+    <div class="book-cover">📖</div>
+    <h3>{{ book.title }}</h3>
+    <p>{{ book.author }}</p>
+    <span class="tag">{{ book.category }}</span>
+  </article>
+{% empty %}
+  <div class="empty">No books yet. Add your first book.</div>
+{% endfor %}
+</div>
+{% endblock %}

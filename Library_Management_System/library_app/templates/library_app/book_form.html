@@ -1,0 +1,18 @@
+{% extends "library_app/base.html" %}
+{% block title %}{{ title }} | LibraryHub{% endblock %}
+{% block content %}
+<div class="form-card">
+<h1>{{ title }}</h1>
+<p class="muted">Enter the book details below.</p>
+<form method="post" novalidate>
+{% csrf_token %}
+{% for field in form %}
+  <label>{{ field.label }}</label>
+  {{ field }}
+  {% for error in field.errors %}<small class="error">{{ error }}</small>{% endfor %}
+{% endfor %}
+<button class="btn" type="submit">Save Book</button>
+<a class="btn outline" href="{% url 'book_list' %}">Cancel</a>
+</form>
+</div>
+{% endblock %}
